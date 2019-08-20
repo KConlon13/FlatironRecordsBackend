@@ -8,4 +8,13 @@ class Api::LabelsController < ApplicationController
     label = Label.find(params[:id])
     render json: label
     end
+
+    # def update
+    # label = Label.find(params[:id])
+    # # label.update(code_name: params[:code_name])
+
+    # render json: label
+    # end
+
+    
 end
