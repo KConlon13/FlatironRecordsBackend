@@ -9,9 +9,29 @@ class Api::ArtistsController < ApplicationController
         render json: artist
     end
 
-    # def create
-    #     # artist = Artist.create(label_id: params[:label_id], artifact_id: params[:artifact_id])
-    #     ## Something here, need to figure out the params for creating artist
-    #     # artifact = Artifact.find(params[:artifact_id])
-    # end
+    def create
+        artist = Artist.new(artist_params)
+        artist.save
+        render json: artist
+    end
+
+    def update
+        artist = Artist.find(params[:id])
+        artist.update(artist_params)
+        artist.save
+        render json: artist
+    end
+
+
+    def destroy 
+        artist = Artist.find(params[:id])
+        artist.delete
+        render json: artist
+    end
+
+    private
+
+    def artist_params 
+        params.require(:artist).permit(:name, :genre, :biography, :imageUrl, :likes, :label_id)
+    end
 end
